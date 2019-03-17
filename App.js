@@ -77,7 +77,22 @@ export default class App extends React.Component {
         </View>
     </TouchableOpacity>
     )}
+    Header(){
+    return(
+        <View style={{height : 100,backgroundColor: '#ff746d', flex: 0.2}}>
 
+            <TouchableOpacity
+                style={styles.button}
+                onPress={this.onPress}
+            >
+              <Text style ={{color: 'white',fontSize: 17}}> Status </Text>
+            </TouchableOpacity>
+          <Text style={[styles.textHeader]}>
+            בחירות ישראל 2019
+          </Text>
+        </View>
+    )
+    }
   componentDidMount(){
     return fetch('https://isr-elections.herokuapp.com/api/parties')
       .then((response) => response.json())
@@ -108,6 +123,7 @@ export default class App extends React.Component {
 
     return(
       <ScrollView>
+        {this.Header()}
         <View style={styles.mainview}>
           {this.renderItemList()}
         </View>
@@ -126,9 +142,30 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center'
   },
+  textHeader: {
+    color: "black",
+    fontSize: 25,
+    textAlign: 'center',
+    top:30
+  },
   view: {
     position: 'absolute',
     backgroundColor: 'transparent'
+  },
+  button: {
+
+    top: 25,
+    right: 0,
+    justifyContent:"center",
+    position: 'absolute',
+    alignItems: 'center',
+    backgroundColor: '#4e82dd',
+    paddingTop: '3%',
+    paddingBottom: '3%',
+    paddingLeft: '2%',
+    paddingRight: '2%',
+    borderRadius: 5,
+    marginRight: 10
   },
   mainview:{
     flex: 1, 
