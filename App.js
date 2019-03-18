@@ -87,8 +87,10 @@ export default class App extends React.Component {
   Header(){
     return(
         <View style={{height : 100,backgroundColor: '#ff746d', flex: 0.2}}>
-
-            <TouchableOpacity
+          <Text style={[styles.textHeader]}>
+            בחירות ישראל 2019
+          </Text>
+            <TouchableOpacity //hitSlop={{top: 20, bottom: 20, left: 50, right: 50}}
                 style={styles.button}
                 onPress={()=>{
                   if(this.state.ScreenSwitcher == "Results"){
@@ -105,9 +107,7 @@ export default class App extends React.Component {
             >
               <Text style ={{color: 'white',fontSize: 17}}>{this.state.ScreenSwitcher} </Text>
             </TouchableOpacity>
-          <Text style={[styles.textHeader]}>
-            בחירות ישראל 2019
-          </Text>
+
         </View>
     )
     }
