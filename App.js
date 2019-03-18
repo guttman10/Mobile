@@ -128,19 +128,18 @@ export default class App extends React.Component {
 
 
   renderResults(){
-    var resScreen = []
     console.log(this.state.res)
-    res=this.state.res
-    for(a in res){
-      console.log(a)
-      console.log(this.state.res[a].currentVotes)
-      resScreen.push(
-        <View>
-          <Text>{a},{this.state.res[a].currentVotes}</Text>
-        </View>
-      )
-    }
-    return resScreen
+    return(
+      <View>
+        <FlatList
+          data={this.state.res}
+          renderItem={({item}) => <Text>{item.currentVotes}</Text>}
+          keyExtractor={({id}) => id}
+        />
+      </View>
+    )
+
+
   }
 
 
