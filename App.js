@@ -188,7 +188,11 @@ export default class App extends React.Component {
     }
 
     return(
-        <ScrollView>
+
+        <ScrollView
+            stickyHeaderIndices={[0]}
+            showsVerticalScrollIndicator={false}
+        >
           {this.Header()}
           {this.currScreen()}
         </ScrollView>
