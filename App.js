@@ -6,7 +6,7 @@ import { ActivityIndicator, Text, View,
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.state ={ isLoading: true}
+    this.state ={ isLoading: true, ScreenSwitcher: "Results"}
   }
 
   renderItemList() {
@@ -20,7 +20,11 @@ export default class App extends React.Component {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
-        }).then((response) => Alert.alert("You vote for: "+item.id)) 
+        }).then((response) =>{ 
+          if(response.status == 200){
+          Alert.alert("You vote for: "+item.id)}
+        })
+         
         .catch((err) => { console.log(err); });
 
       }}>
@@ -77,15 +81,28 @@ export default class App extends React.Component {
         </View>
     </TouchableOpacity>
     )}
-    Header(){
+
+
+  Header(){
     return(
         <View style={{height : 100,backgroundColor: '#ff746d', flex: 0.2}}>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={this.onPress}
+                onPress={()=>{
+                  if(this.state.ScreenSwitcher == "Results"){
+                    this.setState({
+                      ScreenSwitcher : "Vote",
+                    })
+                  }
+                  else{
+                    this.setState({
+                      ScreenSwitcher : "Results",
+                      })
+                  }
+                }}
             >
-              <Text style ={{color: 'white',fontSize: 17}}> Status </Text>
+              <Text style ={{color: 'white',fontSize: 17}}>{this.state.ScreenSwitcher} </Text>
             </TouchableOpacity>
           <Text style={[styles.textHeader]}>
             בחירות ישראל 2019
@@ -93,19 +110,63 @@ export default class App extends React.Component {
         </View>
     )
     }
+
+  
+  getResults(){
+    return fetch('https://isr-elections.herokuapp.com/api/parties/poll-status')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          res: responseJson
+        });
+      })
+      .catch((error) =>{
+        console.error(error);
+      })
+  }
+
+
+  renderResults(){
+    console.log(this.state.res)
+    return(
+      <Text>
+        TODO
+      </Text>
+    )
+
+
+  }
+
+
+  currScreen(){
+    if(this.state.ScreenSwitcher == "Results"){
+      return (
+      <View style={styles.mainview}>
+      {this.renderItemList()}
+      </View>
+      )
+    }
+    else{
+
+      return(
+        <View>
+          {this.renderResults()}
+        </View>
+      )
+    }
+  }
+
   componentDidMount(){
     return fetch('https://isr-elections.herokuapp.com/api/parties')
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
         this.setState({
           isLoading: false,
           dataSource: responseJson.parties
-        }, function(){
-
         });
 
       })
+      .then(() => this.getResults())
       .catch((error) =>{
         console.error(error);
       });
@@ -124,13 +185,14 @@ export default class App extends React.Component {
     return(
       <ScrollView>
         {this.Header()}
-        <View style={styles.mainview}>
-          {this.renderItemList()}
-        </View>
+        {this.currScreen()}
       </ScrollView>
     );
   }
 }
+
+
+
 const styles = StyleSheet.create({
   imgbtn: {
     width: "50%",
@@ -153,9 +215,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   button: {
-
-    top: 25,
+    top:"25%",
     right: 0,
+    height:"50%",
+    width: 75,
     justifyContent:"center",
     position: 'absolute',
     alignItems: 'center',
@@ -165,7 +228,8 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     paddingRight: '2%',
     borderRadius: 5,
-    marginRight: 10
+    marginRight: 10,
+    marginLeft: 15
   },
   mainview:{
     flex: 1, 
