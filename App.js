@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, Text, View, 
-  TouchableOpacity,Alert,StyleSheet,ScrollView, Image } from 'react-native';
+  TouchableOpacity,Alert,StyleSheet,ScrollView,
+  FlatList, Image } from 'react-native';
 
 
 export default class App extends React.Component {
@@ -129,9 +130,13 @@ export default class App extends React.Component {
   renderResults(){
     console.log(this.state.res)
     return(
-      <Text>
-        TODO
-      </Text>
+      <View>
+        <FlatList
+          data={this.state.res}
+          renderItem={({item}) => <Text>{item.currentVotes}</Text>}
+          keyExtractor={({id}) => id}
+        />
+      </View>
     )
 
 
