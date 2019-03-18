@@ -128,14 +128,20 @@ export default class App extends React.Component {
 
   renderResults(){
     var resScreen = []
-    console.log(this.state.res)
+    var sum = 0
     res=this.state.res
-    for(a in res){
-      console.log(a)
-      console.log(this.state.res[a].currentVotes)
+    for(party in res){
+      sum += this.state.res[party].currentVotes
+    }
+    for(party in res){
+      votePer = this.state.res[party].currentVotes/sum
+      while(votePer < 1){
+        votePer *= 10
+      }
+      votePer = votePer.toFixed(2)
       resScreen.push(
           <View>
-            <Text>{a},{this.state.res[a].currentVotes}</Text>
+            <Text>{party}  {votePer}%</Text>
           </View>
       )
     }
