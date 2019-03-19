@@ -124,7 +124,7 @@ export default class App extends React.Component {
           console.error(error);
         })
   }
-
+    
   sortTempArr(b,a) {
     if (a[1] > b[1]) {
       return 1;
@@ -137,7 +137,8 @@ export default class App extends React.Component {
   renderResults(){
     var resScreen = []
     var sum = 0
-    var i = 0
+    var i = 0;
+    var picPath;
     tempArr =[]
     res=this.state.res
     for(party in res){
@@ -146,14 +147,36 @@ export default class App extends React.Component {
     }
     tempArr.sort(this.sortTempArr)
     while(true){
-      item = tempArr[i]
+      item = tempArr[i];
       votePer = item[1]*100/sum
       votePer = votePer.toFixed(2)
-      resScreen.push(
-          <View>
-            <Text style={{fontSize: 20}}>{item[0]}  {votePer}%</Text>
-          </View>
-      )
+        if(i == 0)
+        {
+
+            resScreen.push(
+                <View style={{flex:1, flexDirection: 'row',marginBottom:'7%',marginTop:'7%'}}>
+                    <Image style={{position: 'relative',
+                        left:0,
+                        width: 50,
+                        height: 50,
+                        resizeMode: 'contain'}}
+                        source={require('./images/shas.png')}
+                    />
+                    <View style = {{position:'relative', left: 5}}>
+                        <Text style={{fontSize: 20, color :'black'}}>Party {item[0]}</Text>
+                        <Text style = {{color: 'gray'}}>Vote: {votePer}%</Text>
+                    </View>
+                </View>
+            )
+        }
+        else {
+            resScreen.push(
+                <View style={{marginBottom: '7%'}}>
+                    <Text style={{fontSize: 20, color: 'black'}}>Party {item[0]}</Text>
+                    <Text style={{color: 'gray'}}>Vote: {votePer}%</Text>
+                </View>
+            )
+        }
       i+=1
       if (i == 5){
         break;
