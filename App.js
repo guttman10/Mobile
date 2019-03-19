@@ -10,6 +10,7 @@ export default class App extends React.Component {
     this.state ={ isLoading: true, ScreenSwitcher: "Results"}
   }
 
+
   renderItemList() {
     return this.state.dataSource.map( item =>
         <TouchableOpacity key={item.id} style={[styles.imgbtn]}
@@ -29,6 +30,7 @@ export default class App extends React.Component {
                                 .catch((err) => { console.log(err); });
 
                           }}>
+
           <View style={styles.View}>
             {item.id ==='likud' && <Image
                 source={require('./images/likud.png')}
@@ -124,7 +126,7 @@ export default class App extends React.Component {
           console.error(error);
         })
   }
-    
+
   sortTempArr(b,a) {
     if (a[1] > b[1]) {
       return 1;
@@ -150,70 +152,11 @@ export default class App extends React.Component {
       item = tempArr[i];
       votePer = item[1]*100/sum
       votePer = votePer.toFixed(2)
+        var partyImageSelect = item[0].replace(/-/g , '')
             resScreen.push(
                 <View style={(i == 0)  ? styles.resultTopMargin : styles.resultNoTopMargin}>
 
-                    {item[0] ==='shas' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/shas.png')}
-                    />}
-                    {item[0] ==='likud' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/likud.png')}
-                    />}
-                    {item[0] ==='israel-beitenu' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/israel-beitenu.png')}
-                    />}
-                    {item[0] ==='ihud-miflagot-hayamin' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/ihud-miflagot-hayamin.png')}
-                    />}
-                    {item[0] ==='gesher' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/gesher.png')}
-                    />}
-                    {item[0] ==='avoda' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/avoda.png')}
-                    />}
-                    {item[0] ==='magen' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/magen.png')}
-                    />}
-                    {item[0] ==='balad' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/balad.png')}
-                    />}
-                    {item[0] ==='raam-taal' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/raam-taal.jpeg')}
-                    />}
-                    {item[0] ==='kulanu' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/kulanu.png')}
-                    />}
-                    {item[0] ==='yahadut-hatora' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/yahadut-hatora.png')}
-                    />}
-                    {item[0] ==='yamin-hadash' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/yamin-hadash.png')}
-                    />}
-                    {item[0] ==='kahol-lavan' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/kahol-lavan.png')}
-                    />}
-                    {item[0] ==='merez' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/merez.png')}
-                    />}
-                    {item[0] ==='zehut' && <Image
-                        style={styles.resultImageStyle}
-                        source={require('./images/zehut.png')}
-                    />}
-
+                    <Image style={styles.resultImageStyle} source={partyImage[partyImageSelect]}/>
                     <View style = {{position:'relative', left: 5}}>
                         <Text style={{fontSize: 20, color :'black'}}>Party {item[0]}</Text>
                         <Text style = {{color: 'gray'}}>Vote: {votePer}%</Text>
@@ -288,7 +231,23 @@ export default class App extends React.Component {
 }
 
 
-
+const partyImage = {
+    likud: require('./images/likud.png'),
+    avoda: require('./images/avoda.png'),
+    kahollavan: require('./images/kahol-lavan.png'),
+    merez: require('./images/merez.png'),
+    kulanu: require('./images/kulanu.png'),
+    yaminhadash: require('./images/yamin-hadash.png'),
+    israelbeitenu: require('./images/israel-beitenu.png'),
+    shas: require('./images/shas.png'),
+    yahaduthatora: require('./images/yahadut-hatora.png'),
+    raamtaal: require('./images/raam-taal.jpeg'),
+    balad: require('./images/balad.png'),
+    zehut: require('./images/zehut.png'),
+    gesher: require('./images/gesher.png'),
+    ihudmiflagothayamin: require('./images/ihud-miflagot-hayamin.png'),
+    magen: require('./images/magen.png')
+}
 const styles = StyleSheet.create({
   imgbtn: {
     width: "50%",
@@ -346,6 +305,7 @@ const styles = StyleSheet.create({
     },
     resultImageStyle:{
         position: 'relative',
+        marginLeft:3,
         left:0,
         width: 50,
         height: 50,
