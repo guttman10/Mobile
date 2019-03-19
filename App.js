@@ -57,16 +57,16 @@ export default class App extends React.Component {
                 source={require('./images/shas.png')}
             />}
             {item.id ==='yahadut-hatora' && <Image
-                source={require('../ex1/images/yahadut-hatora.png')}
+                source={require('./images/yahadut-hatora.png')}
             />}
             {item.id ==='raam-taal' && <Image
-                source={require('../ex1/images/raam-taal.jpeg')}
+                source={require('./images/raam-taal.jpeg')}
             />}
             {item.id ==='balad' && <Image
-                source={require('../ex1/images/balad.png')}
+                source={require('./images/balad.png')}
             />}
             {item.id ==='zehut' && <Image
-                source={require('../ex1/images/zehut.png')}
+                source={require('./images/zehut.png')}
             />}
             {item.id ==='gesher' && <Image
                 source={require('./images/gesher.png')}
@@ -150,33 +150,77 @@ export default class App extends React.Component {
       item = tempArr[i];
       votePer = item[1]*100/sum
       votePer = votePer.toFixed(2)
-        if(i == 0)
-        {
-
             resScreen.push(
-                <View style={{flex:1, flexDirection: 'row',marginBottom:'7%',marginTop:'7%'}}>
-                    <Image style={{position: 'relative',
-                        left:0,
-                        width: 50,
-                        height: 50,
-                        resizeMode: 'contain'}}
+                <View style={(i == 0)  ? styles.resultTopMargin : styles.resultNoTopMargin}>
+
+                    {item[0] ==='shas' && <Image
+                        style={styles.resultImageStyle}
                         source={require('./images/shas.png')}
-                    />
+                    />}
+                    {item[0] ==='likud' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/likud.png')}
+                    />}
+                    {item[0] ==='israel-beitenu' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/israel-beitenu.png')}
+                    />}
+                    {item[0] ==='ihud-miflagot-hayamin' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/ihud-miflagot-hayamin.png')}
+                    />}
+                    {item[0] ==='gesher' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/gesher.png')}
+                    />}
+                    {item[0] ==='avoda' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/avoda.png')}
+                    />}
+                    {item[0] ==='magen' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/magen.png')}
+                    />}
+                    {item[0] ==='balad' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/balad.png')}
+                    />}
+                    {item[0] ==='raam-taal' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/raam-taal.jpeg')}
+                    />}
+                    {item[0] ==='kulanu' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/kulanu.png')}
+                    />}
+                    {item[0] ==='yahadut-hatora' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/yahadut-hatora.png')}
+                    />}
+                    {item[0] ==='yamin-hadash' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/yamin-hadash.png')}
+                    />}
+                    {item[0] ==='kahol-lavan' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/kahol-lavan.png')}
+                    />}
+                    {item[0] ==='merez' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/merez.png')}
+                    />}
+                    {item[0] ==='zehut' && <Image
+                        style={styles.resultImageStyle}
+                        source={require('./images/zehut.png')}
+                    />}
+
                     <View style = {{position:'relative', left: 5}}>
                         <Text style={{fontSize: 20, color :'black'}}>Party {item[0]}</Text>
                         <Text style = {{color: 'gray'}}>Vote: {votePer}%</Text>
                     </View>
                 </View>
             )
-        }
-        else {
-            resScreen.push(
-                <View style={{marginBottom: '7%'}}>
-                    <Text style={{fontSize: 20, color: 'black'}}>Party {item[0]}</Text>
-                    <Text style={{color: 'gray'}}>Vote: {votePer}%</Text>
-                </View>
-            )
-        }
+
       i+=1
       if (i == 5){
         break;
@@ -288,6 +332,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap:'wrap',
     justifyContent:"space-evenly"
-  }
+  },
+    resultTopMargin:{
+        marginTop:'7%',
+        flex:1,
+        flexDirection: 'row',
+        marginBottom:'7%'
+    },
+    resultNoTopMargin:{
+        flex:1,
+        flexDirection: 'row',
+        marginBottom:'7%'
+    },
+    resultImageStyle:{
+        position: 'relative',
+        left:0,
+        width: 50,
+        height: 50,
+        resizeMode: 'contain'
+    }
 
 })
