@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, Text, View,
   TouchableOpacity,Alert,StyleSheet,ScrollView,
-  FlatList, Image } from 'react-native';
+  Image } from 'react-native';
 
 
 export default class App extends React.Component {
@@ -125,25 +125,39 @@ export default class App extends React.Component {
         })
   }
 
-
+  sortTempArr(b,a) {
+    if (a[1] > b[1]) {
+      return 1;
+    } else if (b[1] > a[1]) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
   renderResults(){
     var resScreen = []
     var sum = 0
+    var i = 0
+    tempArr =[]
     res=this.state.res
     for(party in res){
       sum += this.state.res[party].currentVotes
+      tempArr.push([party,this.state.res[party].currentVotes])
     }
-    for(party in res){
-      votePer = this.state.res[party].currentVotes/sum
-      while(votePer < 1){
-        votePer *= 10
-      }
+    tempArr.sort(this.sortTempArr)
+    while(true){
+      item = tempArr[i]
+      votePer = item[1]*100/sum
       votePer = votePer.toFixed(2)
       resScreen.push(
           <View>
-            <Text>{party}  {votePer}%</Text>
+            <Text style={{fontSize: 20}}>{item[0]}  {votePer}%</Text>
           </View>
       )
+      i+=1
+      if (i == 5){
+        break;
+      }
     }
     return resScreen
   }
