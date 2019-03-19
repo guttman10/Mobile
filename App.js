@@ -32,53 +32,9 @@ export default class App extends React.Component {
                           }}>
 
           <View style={styles.View}>
-            {item.id ==='likud' && <Image
-                source={require('./images/likud.png')}
-            />}
-
-            {item.id ==='avoda' && <Image
-                source={require('./images/avoda.png')}
-            />}
-
-            {item.id ==='kahol-lavan' && <Image
-                source={require('./images/kahol-lavan.png')}
-            />}
-            {item.id ==='merez' && <Image
-                source={require('./images/merez.png')}
-            />}
-            {item.id ==='kulanu' && <Image
-                source={require('./images/kulanu.png')}
-            />}
-            {item.id ==='yamin-hadash' && <Image
-                source={require('./images/yamin-hadash.png')}
-            />}
-            {item.id ==='israel-beitenu' && <Image
-                source={require('./images/israel-beitenu.png')}
-            />}
-            {item.id ==='shas' && <Image
-                source={require('./images/shas.png')}
-            />}
-            {item.id ==='yahadut-hatora' && <Image
-                source={require('./images/yahadut-hatora.png')}
-            />}
-            {item.id ==='raam-taal' && <Image
-                source={require('./images/raam-taal.jpeg')}
-            />}
-            {item.id ==='balad' && <Image
-                source={require('./images/balad.png')}
-            />}
-            {item.id ==='zehut' && <Image
-                source={require('./images/zehut.png')}
-            />}
-            {item.id ==='gesher' && <Image
-                source={require('./images/gesher.png')}
-            />}
-            {item.id ==='ihud-miflagot-hayamin' && <Image
-                source={require('./images/ihud-miflagot-hayamin.png')}
-            />}
-            {item.id ==='magen' && <Image
-                source={require('./images/magen.png')}
-            />}
+            <Image
+              source={partyImage[item.id]}
+            />
             <Text style={[styles.text]}>{String(item.id)}</Text>
 
           </View>
@@ -140,7 +96,6 @@ export default class App extends React.Component {
     var resScreen = []
     var sum = 0
     var i = 0;
-    var picPath;
     tempArr =[]
     res=this.state.res
     for(party in res){
@@ -152,11 +107,10 @@ export default class App extends React.Component {
       item = tempArr[i];
       votePer = item[1]*100/sum
       votePer = votePer.toFixed(2)
-        var partyImageSelect = item[0].replace(/-/g , '')
             resScreen.push(
                 <View style={(i == 0)  ? styles.resultTopMargin : styles.resultNoTopMargin}>
 
-                    <Image style={styles.resultImageStyle} source={partyImage[partyImageSelect]}/>
+                    <Image style={styles.resultImageStyle} source={partyImage[item[0]]}/>
                     <View style = {{position:'relative', left: 5}}>
                         <Text style={{fontSize: 20, color :'black'}}>Party {item[0]}</Text>
                         <Text style = {{color: 'gray'}}>Vote: {votePer}%</Text>
@@ -234,18 +188,18 @@ export default class App extends React.Component {
 const partyImage = {
     likud: require('./images/likud.png'),
     avoda: require('./images/avoda.png'),
-    kahollavan: require('./images/kahol-lavan.png'),
+    'kahol-lavan': require('./images/kahol-lavan.png'),
     merez: require('./images/merez.png'),
     kulanu: require('./images/kulanu.png'),
-    yaminhadash: require('./images/yamin-hadash.png'),
-    israelbeitenu: require('./images/israel-beitenu.png'),
+    'yamin-hadash': require('./images/yamin-hadash.png'),
+    'israel-beitenu': require('./images/israel-beitenu.png'),
     shas: require('./images/shas.png'),
-    yahaduthatora: require('./images/yahadut-hatora.png'),
-    raamtaal: require('./images/raam-taal.jpeg'),
+    'yahadut-hatora': require('./images/yahadut-hatora.png'),
+    'raam-taal': require('./images/raam-taal.jpeg'),
     balad: require('./images/balad.png'),
     zehut: require('./images/zehut.png'),
     gesher: require('./images/gesher.png'),
-    ihudmiflagothayamin: require('./images/ihud-miflagot-hayamin.png'),
+    'ihud-miflagot-hayamin': require('./images/ihud-miflagot-hayamin.png'),
     magen: require('./images/magen.png')
 }
 const styles = StyleSheet.create({
