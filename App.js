@@ -111,8 +111,8 @@ export default class App extends React.Component {
                 <View style={(i == 0)  ? styles.resultTopMargin : styles.resultNoTopMargin}>
 
                     <Image style={styles.resultImageStyle} source={partyImage[item[0]]}/>
-                    <View style = {{position:'relative', left: 5}}>
-                        <Text style={{fontSize: 20, color :'black'}}>Party {item[0]}</Text>
+                    <View style = {{position:'relative', left: 25}}>
+                        <Text style={{fontSize: 20, color :'black'}}>{item[0]}</Text>
                         <Text style = {{color: 'gray'}}>Vote: {votePer}%</Text>
                     </View>
                 </View>
@@ -201,7 +201,7 @@ const partyImage = {
     gesher: require('./images/gesher.png'),
     'ihud-miflagot-hayamin': require('./images/ihud-miflagot-hayamin.png'),
     magen: require('./images/magen.png')
-}
+};
 const styles = StyleSheet.create({
   imgbtn: {
     width: "50%",
@@ -216,8 +216,9 @@ const styles = StyleSheet.create({
   textHeader: {
     color: "black",
     fontSize: 25,
+      right:15,
     textAlign: 'center',
-    top:30
+    top:32
   },
   view: {
     position: 'absolute',
@@ -259,8 +260,8 @@ const styles = StyleSheet.create({
     },
     resultImageStyle:{
         position: 'relative',
-        marginLeft:3,
-        left:0,
+        //marginLeft:3,
+        left:10,
         width: 50,
         height: 50,
         resizeMode: 'contain'
