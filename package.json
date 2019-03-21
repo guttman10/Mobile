@@ -1,0 +1,51 @@
+{
+  "name": "ex1",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "checkSubmission": {
+    "ex": "1",
+    "students": [
+      {"id": "313432213", "fullName": "Omer Guttman", "email": "guttman99@gmail.com"},
+      {"id": "307923615", "fullName": "Ofir Cohen", "email": "ofir_kohn41@hotmail.com"}
+    ],
+    "os": "Windows",
+    "device": "Android",
+    "deliveryDate": "03/21/2019",
+    "delay": false,
+    "delayReason": "",
+    "comments": "Please take to your consideration that we've not taken Developing in web course, and we still have a gap of knowledge in terms of JS and React."
+  },
+  "dependencies": {
+    "native-base": "latest",
+    "react": "16.8.3",
+    "react-native": "0.59.1",
+    "react-native-gesture-handler": "~1.0.14",
+    "react-navigation": "^3.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-jest": "^24.5.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-react-native": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.6.0",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "prettier": "^1.16.4",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "script": {
+    "lint": "eslint --cache --format codeframe --ext .js ."
+  }
+}
